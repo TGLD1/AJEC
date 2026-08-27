@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AJEC | Association des Jeunes Engagés pour le Changement</title>
+<link rel="icon" type="image/jpeg" href="assets/logo-ajec.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vert-fonce:#0E1F17;
+    --vert:#1F7A4D;
+    --vert-clair:#3FA96A;
+    --orange:#FF6A1A;
+    --bleu:#1B4B7A;
+    --bleu-clair:#3E7CB8;
+    --creme:#F6F4EE;
+    --blanc:#FFFFFF;
+    --encre:#0E1712;
+    --gris:#5B6660;
+    --radius:14px;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    color:var(--encre);
+    background:var(--creme);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+  .container{
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .eyebrow{
+    font-family:var(--font-display);
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--orange);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;
+    background:var(--orange);
+    display:inline-block;
+  }
+  h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.12;}
+  h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:18px;}
+  h3{font-size:1.25rem;margin-bottom:10px;}
+  p{color:var(--gris);}
+  .section-pad{padding:88px 0;}
+
+  /* ===== HEADER ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(14,31,23,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);
+    font-weight:700;font-size:1.15rem;
+    color:var(--blanc);
+  }
+  .logo-mark{
+    width:42px;height:42px;border-radius:10px;
+    background:var(--blanc);
+    display:flex;align-items:center;justify-content:center;
+    padding:4px;
+  }
+  .logo-mark img{width:100%;height:100%;object-fit:contain;}
+  nav ul{display:flex;gap:30px;}
+  nav a{
+    color:rgba(255,255,255,0.82);
+    font-size:0.92rem;font-weight:500;
+    transition:color .2s;
+  }
+  nav a:hover{color:var(--orange);}
+  .nav-cta{
+    background:var(--orange);color:var(--blanc)!important;
+    padding:10px 20px;border-radius:30px;
+    font-weight:600;font-size:0.88rem;
+  }
+  .burger{
+    display:none;flex-direction:column;gap:5px;
+    background:none;border:none;cursor:pointer;padding:6px;
+  }
+  .burger span{width:24px;height:2px;background:#fff;display:block;}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:radial-gradient(ellipse at top right, #17301f 0%, var(--vert-fonce) 55%);
+    color:var(--blanc);
+    padding:170px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-120px;top:-60px;
+    width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,106,26,0.25), transparent 70%);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:end;
+    position:relative;z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5.4vw,3.9rem);
+    color:var(--blanc);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--vert-clair),var(--orange));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    color:rgba(255,255,255,0.78);
+    font-size:1.08rem;
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:30px;
+    font-weight:600;font-size:0.94rem;
+    font-family:var(--font-body);
+    transition:transform .2s, box-shadow .2s;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--orange);color:var(--blanc);box-shadow:0 8px 24px rgba(255,106,26,0.35);}
+  .btn-ghost{border-color:rgba(255,255,255,0.35);color:var(--blanc);}
+  .btn-ghost:hover{border-color:var(--blanc);}
+  .btn-dark{background:var(--vert-fonce);color:var(--blanc);}
+  .btn-dark:hover{background:#000;}
+
+  /* stepper - signature element: les 4 questions du projet */
+  .stepper{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:var(--radius);
+    padding:26px;
+  }
+  .stepper-item{
+    display:flex;gap:14px;padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .stepper-item:last-child{border-bottom:none;}
+  .stepper-num{
+    font-family:var(--font-display);font-weight:700;
+    color:var(--orange);font-size:0.85rem;
+    min-width:26px;
+  }
+  .stepper-item h4{color:var(--blanc);font-size:0.98rem;margin-bottom:2px;}
+  .stepper-item span{color:rgba(255,255,255,0.6);font-size:0.85rem;}
+
+  .stats-row{
+    display:flex;gap:40px;margin-top:56px;
+    flex-wrap:wrap;position:relative;z-index:2;
+  }
+  .stat b{
+    font-family:var(--font-display);font-size:2.1rem;color:var(--blanc);display:block;
+  }
+  .stat span{color:rgba(255,255,255,0.6);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.06em;}
+
+  /* ===== A PROPOS ===== */
+  .apropos{background:var(--blanc);}
+  .apropos-grid{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center;
+  }
+  .valeurs{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px;
+  }
+  .valeur-chip{
+    background:var(--creme);
+    border-radius:10px;
+    padding:14px 16px;
+    font-family:var(--font-display);
+    font-weight:600;font-size:0.92rem;
+    border-left:3px solid var(--vert);
+  }
+  .mvv{display:flex;flex-direction:column;gap:22px;}
+  .mvv-card{
+    background:var(--creme);
+    border-radius:var(--radius);
+    padding:26px 28px;
+  }
+  .mvv-card h4{font-family:var(--font-display);color:var(--vert);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--vert-fonce);color:var(--blanc);}
+  .services .eyebrow{color:var(--vert-clair);}
+  .services .eyebrow::before{background:var(--vert-clair);}
+  .services h2{color:var(--blanc);}
+  .services > .container > p{color:rgba(255,255,255,0.65);max-width:560px;margin-bottom:50px;}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  }
+  .service-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius);
+    padding:30px 26px;
+    transition:background .25s, transform .25s;
+  }
+  .service-card:hover{background:rgba(255,255,255,0.09);transform:translateY(-4px);}
+  .service-num{
+    font-family:var(--font-display);font-size:0.85rem;font-weight:700;
+    color:var(--orange);margin-bottom:16px;display:block;
+  }
+  .service-card h3{color:var(--blanc);}
+  .service-card p{color:rgba(255,255,255,0.62);font-size:0.94rem;}
+
+  /* ===== ACTIVITES ===== */
+  .activites{background:var(--creme);}
+  .act-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px;
+  }
+  .act-card{
+    background:var(--blanc);border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 4px 18px rgba(14,23,18,0.06);
+  }
+  .act-img{
+    height:170px;background:linear-gradient(135deg,var(--bleu),var(--vert));
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,0.85);font-size:0.8rem;font-weight:600;letter-spacing:0.04em;
+  }
+  .act-body{padding:20px 22px;}
+  .act-tag{
+    font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--orange);margin-bottom:8px;display:block;
+  }
+  .placeholder-note{
+    margin-top:28px;padding:16px 20px;background:#FFF3E9;border:1px dashed var(--orange);
+    border-radius:10px;font-size:0.88rem;color:#8a4a1c;
+  }
+
+  /* ===== PROJETS ===== */
+  .projets{background:var(--blanc);}
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj-card{
+    border:1px solid #E7E4DB;border-radius:var(--radius);padding:26px;
+  }
+  .proj-card h3{font-size:1.05rem;}
+
+  /* ===== ACTUALITES / GALERIE ===== */
+  .actu-galerie{background:var(--creme);}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .actu-list li{
+    display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7E4DB;
+  }
+  .actu-date{
+    font-family:var(--font-display);font-weight:700;color:var(--bleu);font-size:0.85rem;min-width:70px;
+  }
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .gal-cell{
+    aspect-ratio:1/1;border-radius:8px;
+    background:linear-gradient(135deg,var(--orange),var(--bleu));
+    opacity:0.85;
+  }
+  .gal-cell:nth-child(2n){background:linear-gradient(135deg,var(--vert),var(--bleu-clair));}
+  .gal-cell:nth-child(3n){background:linear-gradient(135deg,var(--bleu),var(--vert-clair));}
+
+  /* ===== REJOINDRE ===== */
+  .rejoindre{
+    background:linear-gradient(120deg,var(--bleu) 0%, var(--vert-fonce) 100%);
+    color:var(--blanc);
+    text-align:center;
+  }
+  .rejoindre h2{color:var(--blanc);}
+  .rejoindre p{color:rgba(255,255,255,0.75);max-width:560px;margin:0 auto 30px;}
+  .avantages{
+    display:flex;justify-content:center;gap:26px;flex-wrap:wrap;
+    margin-bottom:36px;
+  }
+  .avantage{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.08);
+    padding:10px 18px;border-radius:30px;font-size:0.88rem;
+  }
+  .avantage::before{content:"✓";color:var(--orange);font-weight:700;}
+
+  /* ===== CONTACT ===== */
+  .contact{background:var(--blanc);}
+  .contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;}
+  .info-item{display:flex;gap:14px;margin-bottom:22px;}
+  .info-icon{
+    width:42px;height:42px;border-radius:10px;background:var(--creme);
+    display:flex;align-items:center;justify-content:center;color:var(--vert);font-weight:700;
+    flex-shrink:0;
+  }
+  .info-item h4{font-size:0.95rem;margin-bottom:2px;}
+  .info-item span{color:var(--gris);font-size:0.92rem;}
+  .socials{display:flex;gap:12px;margin-top:10px;}
+  .social-dot{
+    width:38px;height:38px;border-radius:50%;background:var(--vert-fonce);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;
+  }
+  form{display:flex;flex-direction:column;gap:16px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  label{font-size:0.82rem;font-weight:600;margin-bottom:6px;display:block;color:var(--encre);}
+  input,select,textarea{
+    width:100%;padding:13px 14px;border:1px solid #DEDACE;border-radius:10px;
+    font-family:var(--font-body);font-size:0.95rem;background:var(--creme);
+  }
+  textarea{resize:vertical;min-height:110px;}
+  .form-submit{align-self:flex-start;}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--vert-fonce);color:rgba(255,255,255,0.6);padding:50px 0 26px;}
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;
+    padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:24px;
+  }
+  .footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-col h4{color:#fff;font-family:var(--font-display);font-size:0.9rem;margin-bottom:14px;}
+  .footer-col li{margin-bottom:8px;font-size:0.9rem;}
+  .footer-col a:hover{color:var(--orange);}
+  .footer-bottom{display:flex;justify-content:space-between;font-size:0.82rem;flex-wrap:wrap;gap:10px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:900px){
+    nav ul, .nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero-grid, .apropos-grid, .split, .contact-grid{grid-template-columns:1fr;}
+    .service-grid, .act-grid, .proj-grid{grid-template-columns:1fr 1fr;}
+    .valeurs{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .stats-row{gap:26px;}
+    .footer-top{flex-direction:column;}
+  }
+  @media (max-width:600px){
+    .service-grid, .act-grid, .proj-grid, .gal-grid{grid-template-columns:1fr;}
+    .hero{padding:150px 0 70px;}
+    .section-pad{padding:64px 0;}
+  }
+
+  /* mobile menu */
+  .mobile-menu{
+    position:fixed;top:0;right:-100%;width:78%;max-width:320px;height:100vh;
+    background:var(--vert-fonce);z-index:200;transition:right .3s ease;
+    padding:100px 30px 30px;box-shadow:-10px 0 30px rgba(0,0,0,0.3);
+  }
+  .mobile-menu.open{right:0;}
+  .mobile-menu ul{display:flex;flex-direction:column;gap:22px;}
+  .mobile-menu a{color:#fff;font-size:1.05rem;font-weight:500;}
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:150;
+    display:none;
+  }
+  .overlay.open{display:block;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#accueil" class="logo">
+      <span class="logo-mark"><img src="assets/logo-ajec.jpg" alt="Logo AJEC"></span>
+      AJEC
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#activites">Activités</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#actualites">Actualités</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#rejoindre" class="nav-cta">Rejoindre l'AJEC</a>
+    <button class="burger" id="burgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#activites">Activités</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#actualites">Actualités</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#rejoindre" style="color:var(--orange);">Rejoindre l'AJEC →</a></li>
+  </ul>
+</div>
+
+<!-- ACCUEIL -->
+<section class="hero" id="accueil">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Association des Jeunes Engagés pour le Changement</span>
+        <h1>La jeunesse au cœur <em>du changement</em>.</h1>
+        <p class="lead">Former, accompagner et mettre en action la jeunesse pour qu'elle devienne actrice du développement de sa communauté.</p>
+        <div class="hero-ctas">
+          <a href="#services" class="btn btn-primary">Découvrir nos services</a>
+          <a href="#contact" class="btn btn-ghost">Nous contacter</a>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><b>01</b><span>Jeunesse</span></div>
+          <div class="stat"><b>06</b><span>Domaines d'action</span></div>
+          <div class="stat"><b>01</b><span>Vision commune</span></div>
+        </div>
+      </div>
+      <div class="stepper">
+        <div class="stepper-item">
+          <span class="stepper-num">01</span>
+          <div><h4>Qui est l'AJEC ?</h4><span>Une ONG portée par des jeunes, pour des jeunes</span></div>
+        </div>
+        <div class="stepper-item">
+          <span class="stepper-num">02</span>
+          <div><h4>Que fait-elle ?</h4><span>Formation, accompagnement et actions communautaires</span></div>
+        </div>
+        <div class="stepper-item">
+          <span class="stepper-num">03</span>
+          <div><h4>Quels services propose-t-elle ?</h4><span>Six domaines d'intervention au service des jeunes</span></div>
+        </div>
+        <div class="stepper-item">
+          <span class="stepper-num">04</span>
+          <div><h4>Comment la rejoindre ?</h4><span>Adhésion, bénévolat et partenariats</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A PROPOS -->
+<section class="apropos section-pad" id="apropos">
+  <div class="container apropos-grid">
+    <div>
+      <span class="eyebrow">Qui sommes-nous</span>
+      <h2>Une jeunesse engagée pour le changement</h2>
+      <p>L'AJEC est une organisation non gouvernementale portée par des jeunes, pour des jeunes. Elle vise à favoriser l'engagement des jeunes et leur participation à des initiatives contribuant au développement de leur communauté.</p>
+      <div class="valeurs">
+        <div class="valeur-chip">Engagement</div>
+        <div class="valeur-chip">Solidarité</div>
+        <div class="valeur-chip">Responsabilité</div>
+        <div class="valeur-chip">Leadership</div>
+        <div class="valeur-chip">Innovation</div>
+        <div class="valeur-chip">Travail en équipe</div>
+      </div>
+    </div>
+    <div class="mvv">
+      <div class="mvv-card">
+        <h4>Mission</h4>
+        <p>Former, accompagner et mettre en action la jeunesse pour qu'elle devienne actrice du développement de sa communauté.</p>
+      </div>
+      <div class="mvv-card">
+        <h4>Vision</h4>
+        <p>Une jeunesse engagée, formée et outillée, moteur du changement social, économique et communautaire au Bénin.</p>
+      </div>
+      <div class="mvv-card">
+        <h4>Public cible</h4>
+        <p>Jeunes, élèves et étudiants, entrepreneurs, bénévoles, partenaires et toute personne souhaitant découvrir l'AJEC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-pad" id="services">
+  <div class="container">
+    <span class="eyebrow">Nos services</span>
+    <h2>Des services pensés pour la jeunesse</h2>
+    <p>L'AJEC agit dans plusieurs secteurs pour contribuer au développement intégral des jeunes.</p>
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <h3>Formation et éducation</h3>
+        <p>Ateliers, conférences, leadership, compétences numériques, entrepreneuriat et orientation scolaire.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <h3>Engagement citoyen</h3>
+        <p>Sensibilisation au civisme, à la paix, à la lutte contre les addictions et à la protection de l'environnement.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <h3>Entrepreneuriat</h3>
+        <p>Accompagnement des jeunes porteurs de projets, employabilité, partenariats et promotion de l'auto-emploi.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <h3>Sport, culture et loisirs</h3>
+        <p>Activités sportives, culturelles et artistiques pour favoriser l'épanouissement et la cohésion des jeunes.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <h3>Solidarité</h3>
+        <p>Dons de kits scolaires, campagnes de santé et actions sociales en faveur des jeunes en difficulté.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <h3>Plaidoyer</h3>
+        <p>Porter la voix des jeunes auprès des autorités et partenaires afin de défendre leurs intérêts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITES -->
+<section class="activites section-pad" id="activites">
+  <div class="container">
+    <span class="eyebrow">Nos activités</span>
+    <h2>Des jeunes qui passent à l'action</h2>
+    <p>Découvrez quelques catégories d'activités que l'AJEC organise au service de la jeunesse et de la communauté.</p>
+    <div class="act-grid">
+      <div class="act-card">
+        <div class="act-img">Photo à venir</div>
+        <div class="act-body">
+          <span class="act-tag">Formation</span>
+          <h3>Ateliers et conférences</h3>
+          <p>Développer les compétences des jeunes face aux défis du monde actuel.</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-img">Photo à venir</div>
+        <div class="act-body">
+          <span class="act-tag">Sensibilisation</span>
+          <h3>Campagnes communautaires</h3>
+          <p>Actions de sensibilisation au civisme, à la paix et à l'environnement.</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <div class="act-img">Photo à venir</div>
+        <div class="act-body">
+          <span class="act-tag">Rencontres</span>
+          <h3>Événements et rencontres</h3>
+          <p>Des moments d'échange entre jeunes, mentors et partenaires.</p>
+        </div>
+      </div>
+    </div>
+    <p class="placeholder-note">📌 Section à compléter : dates, lieux et photos réelles des prochaines activités de l'AJEC.</p>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section class="projets section-pad" id="projets">
+  <div class="container">
+    <span class="eyebrow">Nos projets</span>
+    <h2>Réalisés et en cours</h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h3>Formation numérique</h3>
+        <p>Initiative d'apprentissage des outils numériques pour les jeunes.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Club des jeunes leaders</h3>
+        <p>Espace de développement du leadership et de la prise de parole.</p>
+      </div>
+      <div class="proj-card">
+        <h3>Campagne de recrutement AJEC</h3>
+        <p>Mobilisation de nouveaux membres autour du projet associatif.</p>
+      </div>
+    </div>
+    <p class="placeholder-note">📌 Section à compléter : descriptions détaillées, résultats et visuels de chaque projet.</p>
+  </div>
+</section>
+
+<!-- ACTUALITES + GALERIE -->
+<section class="actu-galerie section-pad" id="actualites">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">Actualités</span>
+      <h2>Dernières nouvelles</h2>
+      <ul class="actu-list">
+        <li><span class="actu-date">À venir</span><span>Annonce à publier par l'AJEC</span></li>
+        <li><span class="actu-date">À venir</span><span>Résultats d'un projet à publier</span></li>
+        <li><span class="actu-date">À venir</span><span>Témoignage d'un bénéficiaire</span></li>
+      </ul>
+    </div>
+    <div id="galerie">
+      <span class="eyebrow">Galerie</span>
+      <h2>En images</h2>
+      <div class="gal-grid">
+        <div class="gal-cell"></div><div class="gal-cell"></div><div class="gal-cell"></div>
+        <div class="gal-cell"></div><div class="gal-cell"></div><div class="gal-cell"></div>
+      </div>
+      <p class="placeholder-note">📌 Remplacer par les photos réelles des formations et événements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REJOINDRE -->
+<section class="rejoindre section-pad" id="rejoindre">
+  <div class="container">
+    <span class="eyebrow" style="color:#FFD9BF;">Notre engagement</span>
+    <h2>Pourquoi rejoindre l'AJEC ?</h2>
+    <p>Parce que le changement commence lorsque les jeunes décident de passer de l'idée à l'action.</p>
+    <div class="avantages">
+      <div class="avantage">Développer ses compétences</div>
+      <div class="avantage">Participer à des projets communautaires</div>
+      <div class="avantage">Développer son réseau</div>
+      <div class="avantage">Découvrir des opportunités</div>
+      <div class="avantage">Contribuer à sa communauté</div>
+    </div>
+    <a href="#contact" class="btn btn-primary">Je veux rejoindre l'AJEC</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow">Contact</span>
+      <h2>Parlons de votre projet</h2>
+      <p style="margin-bottom:30px;">Une question, une proposition de partenariat ou envie de participer ? Contactez l'AJEC.</p>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div><h4>Localisation</h4><span>Bénin</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">✉️</div>
+        <div><h4>Email</h4><span>contact@ajec-benin.org</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div><h4>Téléphone</h4><span>À compléter</span></div>
+      </div>
+      <div class="socials">
+        <div class="social-dot">f</div>
+        <div class="social-dot">ig</div>
+        <div class="social-dot">wa</div>
+        <div class="social-dot">tt</div>
+      </div>
+    </div>
+    <form onsubmit="return false;">
+      <div class="form-row">
+        <div>
+          <label>Nom complet</label>
+          <input type="text" placeholder="Votre nom">
+        </div>
+        <div>
+          <label>Adresse email</label>
+          <input type="email" placeholder="votre@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Téléphone</label>
+          <input type="tel" placeholder="Votre numéro">
+        </div>
+        <div>
+          <label>Sujet</label>
+          <select>
+            <option>Devenir membre</option>
+            <option>Partenariat</option>
+            <option>Information</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label>Message</label>
+        <textarea placeholder="Votre message..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-dark form-submit">Envoyer le message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div style="max-width:280px;">
+        <div class="logo" style="margin-bottom:14px;"><span class="logo-mark"><img src="assets/logo-ajec.jpg" alt="Logo AJEC"></span>AJEC</div>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;">AJEC : Ensemble pour une jeunesse engagée et un avenir meilleur.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#activites">Activités</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Ressources</h4>
+          <ul>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#actualites">Actualités</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#rejoindre">Rejoindre AJEC</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>contact@ajec-benin.org</li>
+            <li>Bénin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AJEC — Association des Jeunes Engagés pour le Changement</span>
+      <span>Le numérique au service d'une jeunesse engagée</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('open');
+  }
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+</script>
+
+</body>
+</html>
