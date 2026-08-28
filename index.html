@@ -118,10 +118,23 @@
     position:relative;
     overflow:hidden;
   }
+  .hero-video{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    z-index:0;
+    opacity:0.35;
+  }
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at top right, rgba(23,48,31,0.75) 0%, rgba(14,31,23,0.92) 55%);
+    z-index:1;
+  }
   .hero::after{
     content:"";position:absolute;right:-120px;top:-60px;
     width:420px;height:420px;border-radius:50%;
     background:radial-gradient(circle, rgba(255,106,26,0.25), transparent 70%);
+    z-index:1;
   }
   .hero-grid{
     display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:end;
@@ -420,7 +433,11 @@
 
 <!-- ACCUEIL -->
 <section class="hero" id="accueil">
-  <div class="container">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/logo-ajec.jpg">
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <div class="hero-grid">
       <div>
         <span class="eyebrow">Association des Jeunes Engagés pour le Changement</span>
@@ -540,7 +557,7 @@
     <p>Découvrez quelques catégories d'activités que l'AJEC organise au service de la jeunesse et de la communauté.</p>
     <div class="act-grid">
       <div class="act-card">
-        <div class="act-img">Photo à venir</div>
+        <div class="act-img" style="background:none;padding:0;"><img src="assets/activites/formation-05.jpg" alt="Session de formation AJEC" style="width:100%;height:170px;object-fit:cover;"></div>
         <div class="act-body">
           <span class="act-tag">Formation</span>
           <h3>Ateliers et conférences</h3>
@@ -548,7 +565,7 @@
         </div>
       </div>
       <div class="act-card">
-        <div class="act-img">Photo à venir</div>
+        <div class="act-img" style="background:none;padding:0;"><img src="assets/activites/formation-04.jpg" alt="Atelier AJEC" style="width:100%;height:170px;object-fit:cover;"></div>
         <div class="act-body">
           <span class="act-tag">Sensibilisation</span>
           <h3>Campagnes communautaires</h3>
@@ -556,7 +573,7 @@
         </div>
       </div>
       <div class="act-card">
-        <div class="act-img">Photo à venir</div>
+        <div class="act-img" style="background:none;padding:0;"><img src="assets/activites/formation-08.jpg" alt="Rencontre AJEC" style="width:100%;height:170px;object-fit:cover;"></div>
         <div class="act-body">
           <span class="act-tag">Rencontres</span>
           <h3>Événements et rencontres</h3>
@@ -564,7 +581,7 @@
         </div>
       </div>
     </div>
-    <p class="placeholder-note">📌 Section à compléter : dates, lieux et photos réelles des prochaines activités de l'AJEC.</p>
+    <p class="placeholder-note">📌 Photos de la session de formation AJEC intégrées. Vous pouvez en envoyer d'autres pour varier les visuels par activité.</p>
   </div>
 </section>
 
@@ -607,10 +624,14 @@
       <span class="eyebrow">Galerie</span>
       <h2>En images</h2>
       <div class="gal-grid">
-        <div class="gal-cell"></div><div class="gal-cell"></div><div class="gal-cell"></div>
-        <div class="gal-cell"></div><div class="gal-cell"></div><div class="gal-cell"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-01.jpg') center/cover;"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-02.jpg') center/cover;"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-03.jpg') center/cover;"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-06.jpg') center/cover;"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-07.jpg') center/cover;"></div>
+        <div class="gal-cell" style="background:url('assets/activites/formation-09.jpg') center/cover;"></div>
       </div>
-      <p class="placeholder-note">📌 Remplacer par les photos réelles des formations et événements.</p>
+      <p class="placeholder-note">📌 Galerie mise à jour avec les photos de la session de formation. Envoyez-en d'autres pour l'enrichir au fil des événements.</p>
     </div>
   </div>
 </section>
