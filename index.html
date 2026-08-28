@@ -238,7 +238,7 @@
   }
   .service-card{
     background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
+    border:1px solid rgba(just);
     border-radius:var(--radius);
     padding:30px 26px;
     transition:background .25s, transform .25s;
@@ -581,7 +581,7 @@
         </div>
       </div>
     </div>
-    <p class="placeholder-note">📌 Photos de la session de formation AJEC intégrées. Vous pouvez en envoyer d'autres pour varier les visuels par activité.</p>
+    <p class="placeholder-note">📌 Photos de la session de formation AJEC intégrées.</p>
   </div>
 </section>
 
@@ -631,8 +631,8 @@
         <div class="gal-cell" style="background:url('assets/activites/formation-07.jpg') center/cover;"></div>
         <div class="gal-cell" style="background:url('assets/activites/formation-09.jpg') center/cover;"></div>
       </div>
-      <p class="placeholder-note">📌 Galerie mise à jour avec les photos de la session de formation. Envoyez-en d'autres pour l'enrichir au fil des événements.</p>
-    </div>
+     
+    </div>      
   </div>
 </section>
 
@@ -660,44 +660,47 @@
       <span class="eyebrow">Contact</span>
       <h2>Parlons de votre projet</h2>
       <p style="margin-bottom:30px;">Une question, une proposition de partenariat ou envie de participer ? Contactez l'AJEC.</p>
+      
       <div class="info-item">
         <div class="info-icon">📍</div>
         <div><h4>Localisation</h4><span>Bénin</span></div>
       </div>
       <div class="info-item">
         <div class="info-icon">✉️</div>
-        <div><h4>Email</h4><span>contact@ajec-benin.org</span></div>
+        <div><h4>Email</h4><span><a href="mailto:ajec382@gmail.com">ajec382@gmail.com</a></span></div>
       </div>
       <div class="info-item">
         <div class="info-icon">📞</div>
-        <div><h4>Téléphone</h4><span>À compléter</span></div>
+        <div><h4>Téléphone</h4><span><a href="tel:0196234220">01 96 23 42 20</a></span></div>
       </div>
+
       <div class="socials">
-        <div class="social-dot">f</div>
-        <div class="social-dot">ig</div>
-        <div class="social-dot">wa</div>
-        <div class="social-dot">tt</div>
+        <a href="https://www.facebook.com/profile.php?id=61592585786273" target="_blank" class="social-dot">f</a>
+        <a href="#" class="social-dot">ig</a>
+        <a href="https://wa.me/2290196234220" target="_blank" class="social-dot">wa</a>
+        <a href="#" class="social-dot">tt</a>
       </div>
     </div>
-    <form onsubmit="return false;">
+
+    <form action="https://formspree.io/f/ajec382@gmail.com" method="POST">
       <div class="form-row">
         <div>
           <label>Nom complet</label>
-          <input type="text" placeholder="Votre nom">
+          <input type="text" name="nom" placeholder="Votre nom" required>
         </div>
         <div>
           <label>Adresse email</label>
-          <input type="email" placeholder="votre@email.com">
+          <input type="email" name="email" placeholder="votre@email.com" required>
         </div>
       </div>
       <div class="form-row">
         <div>
           <label>Téléphone</label>
-          <input type="tel" placeholder="Votre numéro">
+          <input type="tel" name="telephone" placeholder="Votre numéro">
         </div>
         <div>
           <label>Sujet</label>
-          <select>
+          <select name="sujet">
             <option>Devenir membre</option>
             <option>Partenariat</option>
             <option>Information</option>
@@ -707,7 +710,7 @@
       </div>
       <div>
         <label>Message</label>
-        <textarea placeholder="Votre message..."></textarea>
+        <textarea name="message" placeholder="Votre message..." required></textarea>
       </div>
       <button type="submit" class="btn btn-dark form-submit">Envoyer le message</button>
     </form>
